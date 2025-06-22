@@ -1,0 +1,39 @@
+name: Java CI
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Build with javac
+        run: |
+          mkdir -p build
+          javac -cp lib/spigot-api.jar -d build $(find src -name "*.java")
+
+      - name: Package plugin
+        run: |
+          mkdir -p jar/META-INF
+          cp -r build/* jar/
+          cp src/main/resources/plugin.yml jar/
+          cd jar
+          jar cf ../KoreanShopPlugin.jar *
+          cd ..
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: KoreanShopPlugin
+          path: KoreanShopPlugin.jar
