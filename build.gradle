@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+}
+
+group = 'me.kebute.shop'
+version = '1.0-SNAPSHOT'
+
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
+
+repositories {
+    mavenCentral()
+    maven {
+        name = "spigot"
+        url = uri("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
+    }
+}
+
+dependencies {
+    compileOnly fileTree(dir: 'lib', include: ['*.jar'])  // spigot-api 를 여기서 인식
+}
+
+jar {
+    archiveBaseName.set('KoreanShopPlugin')
+    archiveVersion.set('1.0')
+}
