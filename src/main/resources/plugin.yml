@@ -1,0 +1,16 @@
+name: KoreanShopPlugin
+version: 1.0.0
+main: me.kebute.shop.KoreanShopPlugin
+api-version: 1.20
+depend: [KoreanCurrencyPlugin, Citizens]
+commands:
+  거래통계:
+    description: 거래 통계를 확인합니다
+    usage: /<command>
+  시세보기:
+    description: 시세 변동을 확인합니다
+    usage: /<command>
+permissions:
+  koreanshop.admin:
+    description: 상점 관리자 권한
+    default: op
